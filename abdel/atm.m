@@ -7,16 +7,18 @@ function [T,p,rho] = atm(h)
     g = 9.81;
     R = 287;
     hStrat = 11e+3;
+   
     
-    if h < hStrat
-        T = T0 - lambda.*(h./1000);
-        p = p0.*(T./T0).^(g./(R.*lambda));
-    else
-        T = 216.65;
-        p1 = p0.*(T./T0).^(g./(R.*lambda));
-        p = p1.*exp((-g./(R.*T)).*(hStrat-h));
+    for i = 1:length(h)
+        if h < hStrat
+            T(i) = T0 - lambda.*(h(i)./1000);
+            p(i) = p0.*(T(i)./T0).^(g./(R.*lambda));
+        else
+            T(i) = 216.65;
+            p1 = p0.*(T(i)./T0).^(g./(R.*lambda));
+            p(i) = p1.*exp((-g./(R.*T(i))).*(hStrat-h(i)));
+        end
     end
-    
     rho = p./(R.*T)*100000;
 
 end
