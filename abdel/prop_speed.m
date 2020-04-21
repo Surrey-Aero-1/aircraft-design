@@ -14,7 +14,7 @@ V_th_max = 1.*c;
 
 rpm = 1000; %assumption
 D = 2:0.01:6;
-V_plane = sqrt(V_th_max.^2 - ((pi()/30).*rpm.*(D./2)).^2).*1.944;
+V_plane = 1.1.*sqrt(V_th_max.^2 - ((pi()/30).*rpm.*(D./2)).^2).*1.944;
 
 targetVel = 0.6.*c.*1.944;
 absVel = 0.75.*c.*1.944;
